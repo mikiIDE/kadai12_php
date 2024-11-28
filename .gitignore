@@ -1,0 +1,5 @@
+/.env/
+memo.txt
+composer.json
+composer.lock
+/vendor/

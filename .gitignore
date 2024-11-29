@@ -3,3 +3,5 @@ memo.txt
 composer.json
 composer.lock
 /vendor/
+sql.sql
+funcs.php

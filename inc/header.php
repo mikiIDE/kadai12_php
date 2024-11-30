@@ -1,8 +1,9 @@
 <!-- header.php -->
 <?php
 session_start();
+include("../php/funcs.php");
 // ログイン状態の簡易チェック
-$is_logged_in = isset($_SESSION["chk_ssid"]) && $_SESSION["chk_ssid"] == session_id();
+$is_logged_in = isLoggedIn();
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -10,13 +11,13 @@ $is_logged_in = isset($_SESSION["chk_ssid"]) && $_SESSION["chk_ssid"] == session
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
-    <title>G's GUTS</title>
+    <title>YOUR TO DO LIST</title>
 </head>
 <body>
     <header>
         <div id="navi">
             <div class="header-title">
-                G's GUTS
+                YOUR TO DO LIST
                 <div class="menu">
                     <?php if (!$is_logged_in) : ?> 
                         <!-- 未ログインの場合 -->

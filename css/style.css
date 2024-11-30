@@ -1,8 +1,14 @@
+/* ヘッダー関連部分 */
+header {
+    background-color: rgba(190, 200, 220, 0.7);
+    padding: 20px;
+    width: auto;
+    text-align: center;
+}
 #navi {
     display: flex;
     text-align: center;
 }
-
 .header-title {
     position: relative;
     font-size: 1.5rem;
@@ -10,7 +16,6 @@
     border-bottom: 3px solid #ff6347;
     color: #333333;
 }
-
 .header-title::before {
     position: absolute;
     top: 0;
@@ -21,7 +26,6 @@
     background: #ff6347;
     content: '';
 }
-
 .header-title::after {
     position: absolute;
     transform: rotate(15deg);
@@ -32,9 +36,43 @@
     background: #ff6347;
     content: '';
 }
-
-.menu{
+.menu {
     font-size: 0.9rem;
     position: fixed;
-    right:50px;
+    right: 50px;
+}
+
+
+/* 真ん中部分 */
+main {
+    margin: 100px auto;
+    text-align: center;
+}
+.form-group{
+    margin: 25px;
+}
+
+
+
+/* フッター関連部分 */
+footer {
+    width: auto;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(190, 200, 220, 0.7);
+    bottom: 0;
+}
+.footer-message{
+    font-size: 0.9rem;
+}
+
+
+
+/* 全部に共通する部分 */
+a {
+    text-decoration: none;
+}
+
+textarea {
+    resize: none;
 }

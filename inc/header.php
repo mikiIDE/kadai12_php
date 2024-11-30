@@ -1,7 +1,7 @@
 <!-- header.php -->
 <?php
 session_start();
-include("../php/funcs.php");
+require_once __DIR__ . "../php/funcs.php";
 // ログイン状態の簡易チェック
 $is_logged_in = isLoggedIn();
 ?>

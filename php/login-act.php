@@ -3,16 +3,17 @@
 session_start();
 
 //POST値
-$lid = $_POST["lid"]; //lid
-$lpw = $_POST["lpw"]; //lpw
+$name= $_POST["name"];
+$lid = $_POST["lid"];
+$lpw = $_POST["lpw"];
 
-//1.  DB接続します
+//DB接続します
 include("funcs.php");
 $pdo = db_conn();
 
 //2. データ登録SQL作成
 //* PasswordがHash化→条件はlidのみ！！
-$stmt = $pdo->prepare("SELECT * FROM gs_user_table WHERE lid=:lid AND life_flg=0"); 
+$stmt = $pdo->prepare("SELECT * FROM your_info WHERE lid=:lid"); 
 $stmt->bindValue(':lid',$lid, PDO::PARAM_STR); //lidだけ渡すのがポイント！
 $status = $stmt->execute();
 

@@ -1,5 +1,5 @@
-<!-- sign-in-act.php -->
 <?php
+// sign-in.php
 session_start();
 require_once __DIR__ . '/funcs.php'; // 関数ファイルを読み込む（includeではなくrequire_once推奨。二重呼び込みやエラーの際の実行を避ける）
 if ($_SERVER['REQUEST_METHOD'] != 'POST') { //直接このページを見に来た場合はリダイレクトする
@@ -35,6 +35,7 @@ $stmt->bindValue(':name', $name, PDO::PARAM_STR); //Integer（文字の場合 PD
 $stmt->bindValue(':lid', $lid, PDO::PARAM_STR);
 $stmt->bindValue(':lpw', $lpw, PDO::PARAM_STR);
 $status = $stmt->execute(); //クエリ（要求）実行役。trueかfalseが返ってくる
+$_SESSION['user_id'] = $row['id'];
 
 //5. 登録後の処理
 if ($status == false) {

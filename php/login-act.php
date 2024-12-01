@@ -1,5 +1,5 @@
-<!-- login-act.php -->
 <?php
+// loggin-act.php
 session_start();
 require_once __DIR__ . '/funcs.php'; //関数ファイル読み込み
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {//直接このページを見に来た場合はリダイレクトする
@@ -42,7 +42,7 @@ if($pw){
   //Login成功時
   $_SESSION["chk_ssid"]  = session_id(); //ここで一旦SESSIONに預ける
   $_SESSION["name"]      = $user["name"];
-  $_SESSION["id"]        = $user["id"];
+  $_SESSION["user_id"]        = $user["id"];
   //Login成功時
   redirect("main.php");
 

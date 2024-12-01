@@ -13,7 +13,7 @@ require_once __DIR__ .'/../inc/header.php';
                     <input type="text" id="name" name="name" placeholder="64文字以内の全角" required>
                 </div>
                 <div class="form-group">
-                    <label for="lid">ユーザー名：</label>
+                    <label for="lid">ユーザーID：</label>
                     <input type="text" id="lid" name="lid" placeholder="ログイン時に必要です" required>
                 </div>
                 <div class="form-group">

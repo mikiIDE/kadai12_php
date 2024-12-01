@@ -1,5 +1,5 @@
-<!-- index.php -->
 <?php
+// index.php
 require_once __DIR__ .'/../inc/header.php';
 ?>
     <main>
@@ -34,7 +34,7 @@ require_once __DIR__ .'/../inc/header.php';
         <div class="info">
             <form action="login-act.php" method="post">
                 <div class="form-group">
-                    <label for="lid">ユーザー名：</label>
+                    <label for="lid">ユーザーID：</label>
                     <input type="text" id="lid" name="lid" required>
                 </div>
                 <div class="form-group">

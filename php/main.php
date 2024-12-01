@@ -108,4 +108,4 @@ for ( $day = 1; $day <= $day_count; $day++, $youbi++) {
         </table>
     </div>
 </body>
-</html>
+<?php include '../inc/footer.php'; ?>

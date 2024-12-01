@@ -101,7 +101,7 @@ td {
     height: 100px;
 }
 .today {
-    background: orange !important;
+    background: rgb(245, 213, 154) !important;
 }
 th:nth-of-type(1), td:nth-of-type(1) {
     color: red;

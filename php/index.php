@@ -1,32 +1,11 @@
 <!-- index.php -->
 <?php
-session_start();
-include("funcs.php");
-// ログイン状態の簡易チェック
-$is_logged_in = isLoggedIn();
+require_once __DIR__ .'/../inc/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="ja">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-    <title>YOUR TO DO</title>
-</head>
-
-<body>
-    <header>
-        <div id="navi">
-            <div class="header-title">
-                YOUR TO DO LIST
-            </div>
-        </div>
-    </header>
     <main>
         <div class="form-group">
             登録済みの情報を入力してね<br>
-            初めての場合は先に<a href="sign-in.php">登録</a>へ！
+            初めての場合は先に登録のため<button><a href="sign-in.php">こちら　<i class="bi bi-person-plus"></i></a></button>へ！
         </div>
         <!-- ポップアップ -->
         <div id="popup-wrapper">

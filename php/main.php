@@ -31,8 +31,8 @@ if ($timestamp === false) {
     $timestamp = strtotime($ym . '-01');
 }
 
-// 今日の日付 フォーマット　例）2021-06-3
-$today = date('Y-m-j');
+// 今日の日付 フォーマット　例）2024-12-01
+$today = date('Y-m-d');
 
 // カレンダーのタイトルを作成　例）2021年6月
 $html_title = date('Y年n月', $timestamp);

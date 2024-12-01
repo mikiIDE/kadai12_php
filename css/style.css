@@ -92,11 +92,30 @@ footer {
     font-size: 0.9rem;
 }
 
+/* カレンダーに関する部分 */
+th {
+    height: 30px;
+    text-align: center;
+}
+td {
+    height: 100px;
+}
+.today {
+    background: orange !important;
+}
+th:nth-of-type(1), td:nth-of-type(1) {
+    color: red;
+}
+th:nth-of-type(7), td:nth-of-type(7) {
+    color: blue;
+}
+
 
 
 /* 全部に共通する部分 */
 a {
     text-decoration: none;
+    color: #333333;
 }
 
 textarea {

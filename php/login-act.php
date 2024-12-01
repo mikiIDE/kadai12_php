@@ -1,47 +1,55 @@
+<!-- login-act.php -->
 <?php
-//最初にSESSIONを開始！！ココ大事！！
 session_start();
+require_once __DIR__ . '/funcs.php'; //関数ファイル読み込み
+if ($_SERVER['REQUEST_METHOD'] != 'POST') {//直接このページを見に来た場合はリダイレクトする
+    redirect("index.php");
+}
 
 //POST値
-$name= $_POST["name"];
 $lid = $_POST["lid"];
 $lpw = $_POST["lpw"];
 
-//DB接続します
-include("funcs.php");
+// DB接続
 $pdo = db_conn();
 
-//2. データ登録SQL作成
+// データ確認
 //* PasswordがHash化→条件はlidのみ！！
-$stmt = $pdo->prepare("SELECT * FROM your_info WHERE lid=:lid"); 
-$stmt->bindValue(':lid',$lid, PDO::PARAM_STR); //lidだけ渡すのがポイント！
+$stmt = $pdo->prepare("SELECT * FROM your_info WHERE lid = :lid");
+$stmt->bindValue(':lid', $lid, PDO::PARAM_STR); //lidだけ渡すのがポイント
 $status = $stmt->execute();
 
-//3. SQL実行時にエラーがある場合STOP
+// SQL実行時にエラーがある場合STOP
 if($status==false){
     sql_error($stmt);
 }
 
-//4. 抽出データ数を取得
-$val = $stmt->fetch();         //1レコードだけ取得する方法
+// データの参照
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+//ユーザーが見つからない場合の処理
+if(!$user){
+    $_SESSION["error"] = "ログインIDまたはパスワードが間違っています";
+    redirect("index.php");
+}
 //$count = $stmt->fetchColumn(); //SELECT COUNT(*)で使用可能()
+//$val = $stmt->fetch();         //1レコードだけ取得する方法
 
 
-//5.該当１レコードがあればSESSIONに値を代入
+//該当レコードがあればSESSIONに値を代入
 //入力したPasswordと暗号化されたPasswordを比較！[戻り値：true,false]
-$pw = password_verify($lpw, $val["lpw"]); //$lpw = password_hash($lpw, PASSWORD_DEFAULT);   //パスワードハッシュ化
+$pw = password_verify($lpw, $user["lpw"]); 
 if($pw){ 
   //Login成功時
   $_SESSION["chk_ssid"]  = session_id(); //ここで一旦SESSIONに預ける
-  $_SESSION["kanri_flg"] = $val['kanri_flg'];
-  $_SESSION["name"]      = $val['name'];
-  //Login成功時（select.phpへ）
-  redirect("select.php");
+  $_SESSION["name"]      = $user["name"];
+  $_SESSION["id"]        = $user["id"];
+  //Login成功時
+  redirect("main.php");
 
 }else{
-  //Login失敗時(login.phpへ)
+  //Login失敗時の処理
+  $_SESSION["error"] = "ログインIDまたはパスワードが間違っています";
   redirect("index.php");
-
 }
 
 exit();

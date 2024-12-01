@@ -1,9 +1,8 @@
 <!-- sign-in-act.php -->
 <?php
-//最初にSESSIONを開始！！ココ大事！！
 session_start();
-//直接このページを見に来た場合はリダイレクトする
-if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+require_once __DIR__ . '/funcs.php'; // 関数ファイルを読み込む（includeではなくrequire_once推奨。二重呼び込みやエラーの際の実行を避ける）
+if ($_SERVER['REQUEST_METHOD'] != 'POST') { //直接このページを見に来た場合はリダイレクトする
     redirect("index.php");
 }
 
@@ -19,8 +18,6 @@ if(empty($name) || empty($lid) || empty($lpw)){
 }
 
 //2. DB接続
-// 関数ファイルを読み込む（includeではなくrequire_once推奨。二重呼び込みやエラーの際の実行を避ける）
-require_once __DIR__ . '/funcs.php';
 $pdo = db_conn();
 
 //3. 既存ユーザーチェック（※同じlidが存在しないか）

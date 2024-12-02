@@ -147,7 +147,7 @@ for ($day = 1; $day <= $day_count; $day++, $youbi++) {
             <span class="close">&times;</span>
             <h2>TODOリスト</h2>
             <div id="todoList"></div>
-            <button id="addNewTodo">新規追加</button>
+            <button id="addNewTodo" class="add-btn">新規追加</button>
         </div>
     </div>
     <!-- TODO追加用モーダル -->
@@ -165,7 +165,7 @@ for ($day = 1; $day <= $day_count; $day++, $youbi++) {
                     <label>詳細</label>
                     <textarea name="description"></textarea>
                 </div>
-                <button type="submit">保存</button>
+                <button type="submit" class="save-btn">保存</button>
             </form>
         </div>
     </div>
@@ -184,7 +184,7 @@ for ($day = 1; $day <= $day_count; $day++, $youbi++) {
                     <label>詳細</label>
                     <textarea name="description" id="edit_description"></textarea>
                 </div>
-                <button type="submit">更新</button>
+                <button type="submit" class="update-btn">更新</button>
             </form>
         </div>
     </div>
@@ -221,8 +221,8 @@ for ($day = 1; $day <= $day_count; $day++, $youbi++) {
                     <h3>${todo.title}</h3>
                     <p>${todo.description || ''}</p>
                     <div class="button-group">
-                        <button onclick="editTodo(${todo.id})">編集</button>
-                        <button onclick="deleteTodo(${todo.id})">削除</button>
+                        <button onclick="editTodo(${todo.id})" class="edit-btn">編集</button>
+                        <button onclick="deleteTodo(${todo.id})" class="delete-btn">削除</button>
                     </div>
                 </div>
             `).join('');

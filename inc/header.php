@@ -27,22 +27,25 @@ $is_logged_in = isLoggedIn();
     <header>
         <div id="navi">
             <div class="header-title">
-              <a href="index.php">  YOUR TO DO LIST  </a>
-                <div class="menu">
-                    <!-- ?php if (!$is_logged_in) : ?> -->
-                        <!-- 未ログインの場合 -->
-                        <!-- <a href="index.php"><button id="login-btn"><i class="bi bi-box-arrow-in-right"></i>　ログイン</button></a>
+                <a href="index.php"> YOUR TO DO LIST </a>
+                <?php if ($is_logged_in) : ?>
+                    <div class="your-name"><?= h($_SESSION["name"]) ?>さん</div>
+                <?php endif; ?>
+            </div>
+            <div class="menu">
+                <!-- ?php if (!$is_logged_in) : ?> -->
+                <!-- 未ログインの場合 -->
+                <!-- <a href="index.php"><button id="login-btn"><i class="bi bi-box-arrow-in-right"></i>　ログイン</button></a>
                         <a href="sign-in.php"><button id="signin-btn"><i class="bi bi-person-plus"></i>　新規登録</button></a>
                      ?php else : ?> -->
-                        <?php if ($is_logged_in) : ?>
-                        <!-- ログイン済みの場合 -->
-                        <form action="/php/logout.php" method="POST" style="display: inline;">
-                            <button type="submit" id="logout-btn">
-                                <i class="bi bi-box-arrow-right"></i>　ログアウト
-                            </button>
-                        </form>
-                    <?php endif; ?>
-                </div>
+                <?php if ($is_logged_in) : ?>
+                    <!-- ログイン済みの場合 -->
+                    <form action="/php/logout.php" method="POST" style="display: inline;">
+                        <button type="submit" id="logout-btn">
+                            <i class="bi bi-box-arrow-right"></i>　ログアウト
+                        </button>
+                    </form>
+                <?php endif; ?>
             </div>
         </div>
     </header>

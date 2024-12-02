@@ -3,10 +3,13 @@
 session_start();
 require_once __DIR__ . '/funcs.php'; //関数ファイル読み込み
 
+if ($_SERVER['REQUEST_METHOD'] != 'POST') {//直接このページを見に来た場合はリダイレクトする
+    redirect("index.php");
+}
+
 // ログインチェック
 if (!isset($_SESSION['user_id'])) {
-    redirect('sign-in.php');
-    exit();
+    redirect('main.php');
 }
 $user_id = $_SESSION['user_id'];
 

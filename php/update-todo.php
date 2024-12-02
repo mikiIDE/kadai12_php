@@ -2,8 +2,10 @@
 //get-todo.php
 session_start();
 require_once __DIR__ . '/funcs.php'; //関数ファイル読み込み
-
-if (!isset($_SESSION['user_id'])) {
+if ($_SERVER['REQUEST_METHOD'] != 'POST') {//直接このページを見に来た場合はリダイレクトする
+    redirect("index.php");
+}
+if (!isset($_SESSION['user_id'])) { //ログインIDが確認できない場合もリダイレクトする
     redirect("index.php");
 }
 

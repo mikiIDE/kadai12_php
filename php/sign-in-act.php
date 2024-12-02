@@ -1,5 +1,5 @@
 <?php
-// sign-in.php
+// sign-in-act.php
 session_start();
 require_once __DIR__ . '/funcs.php'; // 関数ファイルを読み込む（includeではなくrequire_once推奨。二重呼び込みやエラーの際の実行を避ける）
 if ($_SERVER['REQUEST_METHOD'] != 'POST') { //直接このページを見に来た場合はリダイレクトする
@@ -42,5 +42,5 @@ if ($status == false) {
     sql_error($stmt);
 } else {
     $_SESSION['success'] = "登録が完了しました！ログインしてください";
-    redirect("index.php");
+    redirect("index.php");  // ログイン画面へ遷移
 }

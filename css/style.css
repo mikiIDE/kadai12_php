@@ -5,17 +5,21 @@ header {
     width: auto;
     text-align: center;
 }
+
 #navi {
     display: flex;
     text-align: center;
 }
+
 .header-title {
     position: relative;
     font-size: 1.5rem;
     padding: .3em 0 .2em 1em;
     border-bottom: 3px solid #ff6347;
     color: #333333;
+    display: flex;
 }
+
 .header-title::before {
     position: absolute;
     top: 0;
@@ -26,6 +30,7 @@ header {
     background: #ff6347;
     content: '';
 }
+
 .header-title::after {
     position: absolute;
     transform: rotate(15deg);
@@ -36,23 +41,39 @@ header {
     background: #ff6347;
     content: '';
 }
+
 .menu {
     font-size: 0.9rem;
     position: fixed;
+    top: 10px;
     right: 50px;
 }
 
+.your-name{
+    font-size: 1rem;
+    margin-left: 50px;
+    margin-top:10px;
+}
+
 /* 真ん中部分 */
+body {
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
 main {
     margin: 100px auto;
     text-align: center;
 }
-.form-group{
+
+.form-group {
     margin: 25px;
 }
 
-   /* ポップアップ用 */
-   #popup-wrapper {
+/* ポップアップ用 */
+#popup-wrapper {
     background-color: rgba(0, 0, 0, .5);
     position: fixed;
     top: 0;
@@ -60,10 +81,11 @@ main {
     width: 100%;
     height: 100%;
     display: none;
-    z-index: 9999; /* 追加 */
-  }
-  
-  #popup-inside {
+    z-index: 9999;
+    /* 追加 */
+}
+
+#popup-inside {
     text-align: center;
     width: 100%;
     max-width: 300px;
@@ -71,14 +93,14 @@ main {
     margin: 10% auto;
     padding: 20px;
     position: relative;
-  }
-  
-  #close {
+}
+
+#close {
     position: absolute;
     top: 0;
     right: 5px;
     cursor: pointer;
-  }
+}
 
 /* フッター関連部分 */
 footer {
@@ -86,9 +108,10 @@ footer {
     text-align: center;
     padding: 20px;
     background-color: rgba(190, 200, 220, 0.7);
-    bottom: 0;
+    margin-top: auto;
 }
-.footer-message{
+
+.footer-message {
     font-size: 0.9rem;
 }
 
@@ -97,18 +120,65 @@ th {
     height: 30px;
     text-align: center;
 }
+
 td {
     height: 100px;
 }
+
 .today {
-    background: rgba(245, 213, 154,0.6) !important;
+    background: rgba(245, 213, 154, 0.6) !important;
 }
-th:nth-of-type(1), td:nth-of-type(1) {
+
+th:nth-of-type(1),
+td:nth-of-type(1) {
     color: red;
 }
-th:nth-of-type(7), td:nth-of-type(7) {
+
+th:nth-of-type(7),
+td:nth-of-type(7) {
     color: blue;
 }
+
+.date-cell {
+    position: relative;
+    min-height: 60px;
+    padding: 5px;
+}
+
+.date-number {
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.todo-badge {
+    /* position: absolute; */
+    bottom: 5px;
+    right: 5px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+}
+
+td[data-date]:hover .todo-badge {
+    background-color: #0056b3;
+    cursor: pointer;
+}
+
+.today .todo-badge {
+    background-color: #28a745;
+}
+
+.todo-icon {
+    font-size: 0.9em;
+    margin-right: 2px;
+}
+
 
 /* モーダルの基本スタイル */
 .modal {
@@ -119,7 +189,7 @@ th:nth-of-type(7), td:nth-of-type(7) {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
@@ -168,7 +238,8 @@ th:nth-of-type(7), td:nth-of-type(7) {
     margin-bottom: 5px;
 }
 
-#todoForm input[type="text"], textarea {
+#todoForm input[type="text"],
+textarea {
     width: 100%;
     padding: 8px;
 }
@@ -184,6 +255,18 @@ th:nth-of-type(7), td:nth-of-type(7) {
 #todoForm button:hover {
     background-color: #45a049;
 }
+
+/* ボタン群 */
+button{
+    padding: auto 5px;
+}
+
+.sign-in-btn {
+    border-radius: 100vh;
+    background-color: rgba(99, 106, 248, 0.6);
+    color: #fefefe;
+}
+
 
 /* 全部に共通する部分 */
 a {

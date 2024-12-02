@@ -40,9 +40,9 @@ if(!$user){
 $pw = password_verify($lpw, $user["lpw"]); 
 if($pw){ 
   //Login成功時
-  $_SESSION["chk_ssid"]  = session_id(); //ここで一旦SESSIONに預ける
-  $_SESSION["name"]      = $user["name"];
-  $_SESSION["user_id"]        = $user["id"];
+  $_SESSION["chk_ssid"] = session_id(); //ここで一旦SESSIONに預ける
+  $_SESSION["name"] = $user["name"];
+  $_SESSION["user_id"] = $user["id"];
   //Login成功時
   redirect("main.php");
 
@@ -51,5 +51,4 @@ if($pw){
   $_SESSION["error"] = "ログインIDまたはパスワードが間違っています";
   redirect("index.php");
 }
-
 exit();

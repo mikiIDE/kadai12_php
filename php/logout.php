@@ -6,7 +6,6 @@ require_once __DIR__ . '/funcs.php';
 // このページに直接これないように設定
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     redirect('index.php');
-    exit();
 }
 
 // セッションを破棄

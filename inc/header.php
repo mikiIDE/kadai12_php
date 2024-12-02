@@ -19,7 +19,7 @@ $is_logged_in = isLoggedIn();
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- アイコンやボタン用のBootstrap読み込み -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <title>YOUR TO DO LIST</title>
 </head>
 
@@ -40,7 +40,7 @@ $is_logged_in = isLoggedIn();
                      ?php else : ?> -->
                 <?php if ($is_logged_in) : ?>
                     <!-- ログイン済みの場合 -->
-                    <form action="/php/logout.php" method="POST" style="display: inline;">
+                    <form action="../php/logout.php" method="POST" style="display: inline;">
                         <button type="submit" id="logout-btn">
                             <i class="bi bi-box-arrow-right"></i>　ログアウト
                         </button>

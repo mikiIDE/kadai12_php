@@ -10,7 +10,7 @@ PHP課題提出用「カレンダー付 TODO LIST」
 - PHP課題用に認証、編集（更新）、削除機能を実装したサイトです
 
 ## ③アプリのデプロイURL
-[https://einekleine.sakura.ne.jp/kadai12_php]
+[https://einekleine.sakura.ne.jp/kadai12_php/php]
 
 ## ④アプリのログイン用IDまたはPassword（ある場合）
 - それぞれが登録したユーザー名とパスワード

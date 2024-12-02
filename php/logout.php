@@ -19,5 +19,4 @@ if (isset($_COOKIE[session_name()])) { //session_name()は、セッションID�
 
 // ログインページへリダイレクト
 redirect('index.php');
-exit();
 ?>

@@ -20,7 +20,7 @@ require_once __DIR__ .'/../inc/header.php';
                     <label for="lpw">パスワード：</label>
                     <input type="password" id="lpw" name="lpw" placeholder="ログイン時に必要です" required>
                 </div>
-                <button type="submit" id="signin">登録</button>
+                <button type="submit" class="signin">登録</button>
             </form>
         </div>
     </main>

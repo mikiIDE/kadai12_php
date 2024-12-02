@@ -5,7 +5,7 @@ require_once __DIR__ . '/../inc/header.php';
 <main>
     <div class="form-group">
         登録済みの情報を入力してね<br>
-        初めての場合は先に登録のため　<button class="sign-in-btn"><a href="sign-in.php">こちら　<i class="bi bi-person-plus"></i></a></button>　へ！
+        初めての場合は先に登録のため　<a href="sign-in.php"><button class="sign-in-btn">こちら　<i class="bi bi-person-plus"></i></button></a>　へ！
     </div>
     <!-- ポップアップ -->
     <div id="popup-wrapper">
@@ -41,7 +41,7 @@ require_once __DIR__ . '/../inc/header.php';
                 <label for="lpw">パスワード：</label>
                 <input type="password" id="lpw" name="lpw" required>
             </div>
-            <button type="submit" id="login">ログイン</button>
+            <button type="submit" class="login">ログイン</button>
         </form>
     </div>
 </main>

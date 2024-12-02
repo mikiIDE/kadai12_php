@@ -41,7 +41,7 @@ $is_logged_in = isLoggedIn();
                 <?php if ($is_logged_in) : ?>
                     <!-- ログイン済みの場合 -->
                     <form action="../php/logout.php" method="POST" style="display: inline;">
-                        <button type="submit" id="logout-btn">
+                        <button type="submit" id="logout-btn" class="logout-btn">
                             <i class="bi bi-box-arrow-right"></i>　ログアウト
                         </button>
                     </form>

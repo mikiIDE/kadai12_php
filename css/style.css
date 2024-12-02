@@ -1,6 +1,6 @@
 /* ヘッダー関連部分 */
 header {
-    background-color: rgba(190, 200, 220, 0.7);
+    background-color: #FFF4E1;
     padding: 20px;
     width: auto;
     text-align: center;
@@ -15,7 +15,7 @@ header {
     position: relative;
     font-size: 1.5rem;
     padding: .3em 0 .2em 1em;
-    border-bottom: 3px solid #ff6347;
+    border-bottom: 3px solid #E67A7A;
     color: #333333;
     display: flex;
 }
@@ -27,7 +27,7 @@ header {
     transform: rotate(55deg);
     height: 11px;
     width: 12px;
-    background: #ff6347;
+    background: #E67A7A;
     content: '';
 }
 
@@ -38,7 +38,7 @@ header {
     left: 0;
     height: 8px;
     width: 8px;
-    background: #ff6347;
+    background: #E67A7A;
     content: '';
 }
 
@@ -49,10 +49,10 @@ header {
     right: 50px;
 }
 
-.your-name{
+.your-name {
     font-size: 1rem;
     margin-left: 50px;
-    margin-top:10px;
+    margin-top: 10px;
 }
 
 /* 真ん中部分 */
@@ -107,7 +107,7 @@ footer {
     width: auto;
     text-align: center;
     padding: 20px;
-    background-color: rgba(190, 200, 220, 0.7);
+    background-color: #FFF4E1;
     margin-top: auto;
 }
 
@@ -257,16 +257,57 @@ textarea {
 }
 
 /* ボタン群 */
-button{
+button {
     padding: auto 5px;
 }
 
 .sign-in-btn {
-    border-radius: 100vh;
-    background-color: rgba(99, 106, 248, 0.6);
-    color: #fefefe;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: #9DDCDC;
+    color: #fff;
 }
 
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: .9em 2em;
+    border: none;
+    border-radius: 5px;
+    background-color: #7EC2C2;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1em;
+}
+
+.signin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: .9em 2em;
+    border: none;
+    border-radius: 5px;
+    background-color: #7EC2C2;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1em;
+}
+
+.logout-btn{
+    align-items: center;
+    margin: 0 auto;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: #9DDCDC;
+    color: #fff;
+}
 
 /* 全部に共通する部分 */
 a {

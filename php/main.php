@@ -141,6 +141,15 @@ for ($day = 1; $day <= $day_count; $day++, $youbi++) {
         }
         ?>
     </table>
+    <!-- TODOリスト表示・編集用モーダル -->
+    <div id="todoListModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>TODOリスト</h2>
+            <div id="todoList"></div>
+            <button id="addNewTodo">新規追加</button>
+        </div>
+    </div>
     <!-- TODO追加用モーダル -->
     <div id="todoModal" class="modal">
         <div class="modal-content">
@@ -160,35 +169,178 @@ for ($day = 1; $day <= $day_count; $day++, $youbi++) {
             </form>
         </div>
     </div>
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const modal = document.getElementById('todoModal');
-        const span = document.getElementsByClassName('close')[0];
 
-        // 日付セルクリック時の処理
-        document.querySelectorAll('td[data-date]').forEach(cell => {
-            cell.addEventListener('click', function() {
-                const date = this.getAttribute('data-date');
-                if (date) {
-                    document.getElementById('todo_date').value = date;
-                    modal.style.display = 'block';
+    <!-- 編集用モーダル -->
+    <div id="editTodoModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>TODO編集</h2>
+            <form id="editTodoForm" action="update-todo.php" method="POST">
+                <input type="hidden" name="todo_id" id="edit_todo_id">
+                <div>
+                    <label>タイトル</label>
+                    <input type="text" name="title" id="edit_title" required>
+                </div>
+                <div>
+                    <label>詳細</label>
+                    <textarea name="description" id="edit_description"></textarea>
+                </div>
+                <button type="submit">更新</button>
+            </form>
+        </div>
+    </div>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const todoModal = document.getElementById('todoModal');
+    const todoListModal = document.getElementById('todoListModal');
+    const editTodoModal = document.getElementById('editTodoModal');
+    const closeButtons = document.getElementsByClassName('close');
+    let currentDate = '';
+
+    // グローバルスコープで必要な関数を定義
+    window.fetchTodoList = function(date) {
+        fetch(`get-todos.php?date=${date}`)
+            .then(response => response.json())
+            .then(todos => {
+                displayTodoList(todos);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('todoList').innerHTML = 
+                    '<p>TODOリストの取得に失敗しました。</p>';
+            });
+    };
+
+    // TODOリスト表示関数もグローバルで定義
+    window.displayTodoList = function(todos) {
+        const todoList = document.getElementById('todoList');
+        if (!Array.isArray(todos) || todos.length === 0) {
+            todoList.innerHTML = '<p>この日のTODOはありません。</p>';
+        } else {
+            todoList.innerHTML = todos.map(todo => `
+                <div class="todo-item">
+                    <h3>${todo.title}</h3>
+                    <p>${todo.description || ''}</p>
+                    <div class="button-group">
+                        <button onclick="editTodo(${todo.id})">編集</button>
+                        <button onclick="deleteTodo(${todo.id})">削除</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+    };
+
+    // 編集機能
+    window.editTodo = function(todoId) {
+        fetch(`get-todo.php?id=${todoId}`)
+            .then(response => response.json())
+            .then(todo => {
+                document.getElementById('edit_todo_id').value = todo.id;
+                document.getElementById('edit_title').value = todo.title;
+                document.getElementById('edit_description').value = todo.description || '';
+                todoListModal.style.display = 'none';
+                editTodoModal.style.display = 'block';
+            });
+    };
+
+    // 削除機能
+    window.deleteTodo = function(todoId) {
+        if (confirm('本当に削除しますか？')) {
+            fetch('delete-todo.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `todo_id=${todoId}`
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    fetchTodoList(currentDate);
                 }
             });
-        });
+        }
+    };
 
-        // ×ボタンでモーダルを閉じる
-        span.addEventListener('click', function() {
-            modal.style.display = 'none';
+    // カレンダーの日付セルクリック時
+    document.querySelectorAll('td[data-date]').forEach(cell => {
+        cell.addEventListener('click', function() {
+            const date = this.getAttribute('data-date');
+            if (date) {
+                currentDate = date;
+                fetchTodoList(date);
+                todoListModal.style.display = 'block';
+                todoModal.style.display = 'none';
+                editTodoModal.style.display = 'none';
+            }
         });
+    });
 
-        // モーダル外クリックで閉じる
-        window.addEventListener('click', function(event) {
-            if (event.target == modal) {
+    // 新規追加ボタンクリック時
+    document.getElementById('addNewTodo').addEventListener('click', function() {
+        document.getElementById('todo_date').value = currentDate;
+        todoListModal.style.display = 'none';
+        todoModal.style.display = 'block';
+    });
+
+    // 閉じるボタンの処理
+    Array.from(closeButtons).forEach(button => {
+        button.addEventListener('click', function() {
+            const modalContent = button.closest('.modal-content');
+            if (modalContent) {
+                modalContent.closest('.modal').style.display = 'none';
+            }
+        });
+    });
+
+    // モーダル外クリック時の処理
+    window.addEventListener('click', function(event) {
+        [todoModal, todoListModal, editTodoModal].forEach(modal => {
+            if (event.target === modal) {
                 modal.style.display = 'none';
             }
         });
     });
-</script>
-</body>
-<?php include '../inc/footer.php'; ?>
+});
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const modal = document.getElementById('todoModal');
+        //     const span = document.getElementsByClassName('close')[0];
+
+        //     // カレンダーの日付セルクリック時
+        //     document.querySelectorAll('td[data-date]').forEach(cell => {
+        //         cell.addEventListener('click', function() {
+        //             const date = this.getAttribute('data-date');
+        //             if (date) {
+        //                 // TODOリストを取得して表示
+        //                 fetchTodoList(date);
+        //                 // 新規追加用モーダルを表示
+        //                 document.getElementById('todo_date').value = date;
+        //                 document.getElementById('todoModal').style.display = 'block';
+        //             }
+        //         });
+        //     });
+
+        //     // TODOリスト取得関数
+        //     function fetchTodoList(date) {
+        //         fetch(`get-todos.php?date=${date}`)
+        //             .then(response => response.json())
+        //             .then(todos => {
+        //                 displayTodoList(todos);
+        //             });
+        //     }
+
+        //     // ×ボタンでモーダルを閉じる
+        //     span.addEventListener('click', function() {
+        //         modal.style.display = 'none';
+        //     });
+
+        //     // モーダル外クリックで閉じる
+        //     window.addEventListener('click', function(event) {
+        //         if (event.target == modal) {
+        //             modal.style.display = 'none';
+        //         }
+        //     });
+        // });
+    </script>
+    </body>
+    <?php include '../inc/footer.php'; ?>
